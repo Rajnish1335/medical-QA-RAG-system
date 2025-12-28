@@ -2,7 +2,7 @@
 
 An **AI-powered Medical Question Answering Chatbot** built using **Retrieval-Augmented Generation (RAG)**. The system retrieves relevant medical knowledge from documents and generates accurate, context-aware answers using a large language model.
 
-Designed as a **production-style project**, this repository demonstrates practical experience with modern AI stacks including **LangChain, Pinecone, Groq LLMs, and Flask**.
+Designed as a **production-style project**, this repository demonstrates practical experience with modern AI stacks including **LangChain, Pinecone, Groq LLMs, Flask and conversation memory buffer**.
 
 ---
 
@@ -11,8 +11,9 @@ Designed as a **production-style project**, this repository demonstrates practic
 * 📄 **Document-based Medical QA** using RAG
 * 🔍 **Semantic search** with Pinecone Vector Database
 * 🤖 **LLM-powered answers** using Groq (LLaMA 3)
-* 🌐 **Flask web interface** for real-time chat
 * 🧠 **HuggingFace embeddings** for document vectorization
+* 🌐 **Flask web interface** for real-time chat
+* 🧠 **Conversation memory buffer** to handle follow-ups, pronouns, and topic switching 
 * 🔐 Environment-based API key management
 
 ---
@@ -71,8 +72,9 @@ medical-QA-RAG-system/
 2. **Embeddings** → HuggingFace embeddings generated
 3. **Vector Store** → Stored & searched via Pinecone
 4. **Retrieval** → Top-k relevant chunks fetched
-5. **Generation** → Groq LLaMA 3 produces grounded answers
-6. **API/UI** → Flask serves responses to a chat UI
+5. **Conversation Memory Buffer** → Tracks user conversation context, handles follow-ups, pronouns, and topic switches
+6. **Generation** → Groq LLaMA 3 produces grounded answers
+7. **API/UI** → Flask serves responses to a chat UI
 
 ---
 
@@ -135,8 +137,9 @@ Open in browser:
 1. User asks a medical question
 2. Query is embedded using HuggingFace
 3. Relevant medical chunks retrieved from Pinecone
-4. Context + query passed to Groq LLM
-5. Accurate, grounded response returned to user
+4. Conversation memory buffer maintains context for follow-up questions
+5. Context + query passed to Groq LLM
+6. Accurate, grounded response returned to user
 
 ---
 
@@ -151,7 +154,8 @@ This chatbot is for **educational purposes only** and does **not** replace profe
 * Built an **end-to-end Medical RAG system** using LangChain
 * Integrated **vector search (Pinecone)** with LLM inference
 * Designed **Flask-based AI API & UI**
-* Implemented **scalable document ingestion pipeline**
+* Implemented **conversation memory buffer** for follow-ups and context
+* Designed **scalable document ingestion pipeline**
 * Followed **production best practices** (env vars, modular code)
 
 ---
