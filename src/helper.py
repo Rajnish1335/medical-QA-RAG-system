@@ -36,11 +36,8 @@ def text_split(minimal_docs):
     return splitter.split_documents(minimal_docs)
 
 
-def download_embedding():
-    """
-    HuggingFace Inference API (FREE tier)
-    Token is read automatically from HF_API_TOKEN
-    """
+def download_embedding() -> HuggingFaceEmbeddings:
     return HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"}  # ensures low RAM usage
     )
