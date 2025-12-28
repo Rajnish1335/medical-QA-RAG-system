@@ -6,7 +6,7 @@ from langchain.memory import ConversationBufferWindowMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
-from src.prompt import system_prompt
+from src.prompt import system_prompt  # your updated system_prompt
 import os
 
 app = Flask(__name__)
@@ -37,12 +37,8 @@ prompt = ChatPromptTemplate.from_messages([
     ("human",
      "Conversation so far:\n{chat_history}\n\n"
      "User question: {question}\n"
-     "Answer clearly and accurately based on the previous conversation and retrieved context. "
-     "If the user asks about a new disease or topic, focus on that new topic. "
-     "If the user uses pronouns like 'it' or 'its', refer to the disease most recently mentioned. "
-     "Keep your answer concise and easy to understand.")
+     "Answer based on conversation and retrieved context.")
 ])
-
 
 # Multi-user memory dictionary
 user_memories = {}
@@ -53,7 +49,7 @@ def get_memory(user_id):
         user_memories[user_id] = ConversationBufferWindowMemory(
             memory_key="chat_history",
             return_messages=True,
-            k=3
+            k=3 
         )
     return user_memories[user_id]
 
