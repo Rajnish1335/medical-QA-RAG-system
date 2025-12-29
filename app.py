@@ -35,12 +35,14 @@ chatModel = ChatGroq(
 prompt = ChatPromptTemplate.from_messages([
     ("system", system_prompt),
     ("human",
-     "Conversation so far:\n{chat_history}\n\n"
-     "User question: {question}\n"
-     "Answer clearly and accurately based on the previous conversation and retrieved context. "
-     "If the user asks about a new disease or topic, focus on that new topic. "
-     "If the user uses pronouns like 'it' or 'its', refer to the disease most recently mentioned. "
-     "Keep your answer concise and easy to understand.")
+     "Conversation history (use only if relevant):\n{chat_history}\n\n"
+     "User input: {question}\n\n"
+     "Instructions:\n"
+     "- If the user greets (Hi, Hello), respond naturally without referencing past topics.\n"
+     "- Use conversation history ONLY when the question depends on it (e.g., 'it', 'its treatment').\n"
+     "- If the question introduces a new disease or topic, ignore previous context.\n"
+     "- Answer strictly using retrieved medical context when applicable.\n"
+     "- Keep the response short, clear, and easy to understand.")
 ])
 
 
