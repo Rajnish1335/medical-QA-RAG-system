@@ -15,6 +15,7 @@ app = Flask(__name__)
 load_dotenv()
 os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
 # Embeddings + Vector Store
 embeddings = download_embedding()
@@ -42,7 +43,6 @@ prompt = ChatPromptTemplate.from_messages([
      "If the user uses pronouns like 'it' or 'its', refer to the disease most recently mentioned. "
      "Keep your answer concise and easy to understand.")
 ])
-
 
 # Multi-user memory dictionary
 user_memories = {}
